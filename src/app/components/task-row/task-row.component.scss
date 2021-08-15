@@ -1,0 +1,17 @@
+.task-box {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  border: 1px solid #434343;
+  border-radius: 2px;
+  padding: .5rem;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+
+  label {
+    margin-left: .5rem;
+    margin-right: 2rem;
+  }
+
+}

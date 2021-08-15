@@ -1,0 +1,35 @@
+
+<div class="w-100" style="height: calc(100vh - 181px)" #target>
+
+  <app-quick-add-task></app-quick-add-task>
+
+  <app-task-list></app-task-list>
+
+  <nz-affix [nzTarget]="target" style="position: absolute; right: 24px; bottom: 88px">
+
+    <button nz-button nz-dropdown nzPlacement="topRight" nzShape="circle" nzSize="large" nzType="primary"
+            [nzDropdownMenu]="menu">
+
+      <fa-icon [icon]="add"></fa-icon>
+
+    </button>
+
+    <nz-dropdown-menu #menu>
+
+      <ul nz-menu nzSelectable>
+
+        <li nz-menu-item>New Task</li>
+
+        <li nz-menu-item (click)="createNewRecurringTask()">New Recurring Task</li>
+
+      </ul>
+
+    </nz-dropdown-menu>
+
+  </nz-affix>
+
+</div>
+
+<app-create-edit-task></app-create-edit-task>
+<app-create-edit-recurring-task [openDrawer]="openRecurringDrawer.asObservable()"></app-create-edit-recurring-task>
+
