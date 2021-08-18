@@ -1,0 +1,60 @@
+
+<nz-drawer [nzClosable]="true" [nzVisible]="isVisible" nzPlacement="right" [nzTitle]="task | taskDrawerTitle"
+           [nzWidth]="drawerWidth" (nzOnClose)="isVisible = false">
+
+  <ng-container *nzDrawerContent>
+
+    <div *ngIf="task" style="color: white" class="w-100">
+
+      <div class="w-100 mt-3">
+
+        <div>Title</div>
+
+        <input nz-input [ngModel]="task.title" (ngModelChange)="tasksService.update(task.id, {title: $event})"
+               [ngModelOptions]="{updateOn: 'blur'}">
+
+      </div>
+
+      <div class="w-100 mt-3">
+
+        <div>Scheduled Date</div>
+
+        <nz-date-picker [ngModel]="task.scheduledAt" [ngModelOptions]="{updateOn: 'blur'}"
+                        (ngModelChange)="tasksService.update(task.id, {scheduledAt: $event})"
+                        nzFormat="M/d/Y"></nz-date-picker>
+
+      </div>
+
+      <div class="w-100 mt-3">
+
+        <div>Priority</div>
+
+        <nz-select [ngModel]="task.priority" class="w-100" [nzOptions]="PriorityOptions"
+                   (ngModelChange)="tasksService.update(task.id, {priority: $event})"></nz-select>
+
+      </div>
+
+      <div class="w-100 mt-3">
+
+        <div>Description</div>
+
+        <textarea nz-input [ngModel]="task.description" [ngModelOptions]="{updateOn: 'blur'}"
+                  (ngModelChange)="tasksService.update(task.id, {description: $event})"></textarea>
+
+      </div>
+
+    </div>
+
+    <div class="mt-4 d-flex w-100 justify-content-end">
+
+      <button *ngIf="task.id === 0" nz-button (click)="create()" nzType="primary" [nzLoading]="loading"
+              [disabled]="loading">Save</button>
+
+      <button *ngIf="task.id !== 0" nz-button (click)="clear()" nzType="default" [nzLoading]="loading"
+              [disabled]="loading">Clear</button>
+    </div>
+
+  </ng-container>
+
+</nz-drawer>
+

@@ -1,0 +1,36 @@
+<nz-table #recurringTaskTableTag [nzData]="recurringTasks">
+
+  <thead>
+  <tr>
+
+    <th>Title</th>
+
+    <th>Mode</th>
+
+    <th nzWidth="15%">Actions</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+
+  <tr *ngFor="let recurringTask of recurringTaskTable.data">
+
+    <td>{{recurringTask.title}}</td>
+
+    <td>{{recurringTask.mode}}</td>
+
+    <td>
+
+      <button nz-button (click)="editRecurringTask.emit(recurringTask)" nzType="primary">
+        <fa-icon [icon]="edit"></fa-icon>
+      </button>
+
+    </td>
+
+  </tr>
+
+  </tbody>
+
+
+</nz-table>

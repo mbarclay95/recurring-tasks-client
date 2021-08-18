@@ -1,0 +1,108 @@
+<nz-drawer [nzClosable]="true" [nzVisible]="isVisible" nzPlacement="right" [nzTitle]="recurringTask | taskDrawerTitle"
+           [nzWidth]="drawerWidth" (nzOnClose)="isVisible = false">
+
+  <ng-container *nzDrawerContent>
+
+    <div *ngIf="recurringTask" style="color: white" class="w-100">
+
+      <div class="w-100 mt-4">
+
+        <div><span class="text-danger">*</span>Title</div>
+
+        <input nz-input [(ngModel)]="recurringTask.title">
+
+      </div>
+
+      <div class="w-100 mt-3">
+
+        <div><span class="text-danger">*</span>Priority</div>
+
+        <nz-select [(ngModel)]="recurringTask.priority" class="w-100" [nzOptions]="PriorityOptions"></nz-select>
+
+      </div>
+
+      <div class="w-100 mt-2">
+
+        <div>Description</div>
+
+        <textarea nz-input [(ngModel)]="recurringTask.description"></textarea>
+
+      </div>
+
+      <div class="w-100 mt-3">
+
+        <div><span class="text-danger">*</span>Mode</div>
+
+        <nz-select [ngModel]="recurringTask.mode" class="w-100" [nzOptions]="ModeOptions"
+                   (ngModelChange)="switchMode($event)"></nz-select>
+
+      </div>
+
+      <ng-container [ngSwitch]="recurringTask.mode">
+
+        <ng-container *ngSwitchCase="Modes.DAILY">
+
+          <div class="w-100 mt-4">
+
+            <span>Every<nz-input-number [(ngModel)]="recurringTask.taskMetadata.everyNDays" [nzMin]="1"
+                                        class="mx-3"></nz-input-number>Days</span>
+
+          </div>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="Modes.WEEKLY">
+
+          <div class="w-100 mt-3">
+
+            <div>Select Days</div>
+
+            <nz-select [(ngModel)]="recurringTask.taskMetadata.weekdays" class="w-100" [nzOptions]="WeekdayOptions"
+                       nzMode="multiple"></nz-select>
+
+          </div>
+
+          <div class="w-100 mt-4">
+
+            <span>Every<nz-input-number [(ngModel)]="recurringTask.taskMetadata.everyNWeeks" [nzMin]="1"
+                                        class="mx-3"></nz-input-number>Weeks</span>
+
+          </div>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="Modes.MONTHLY">
+
+          <div class="w-100 mt-3">
+
+            <div>Select Days</div>
+
+            <nz-select [(ngModel)]="recurringTask.taskMetadata.monthDays" class="w-100" [nzOptions]="MonthDayOptions"
+                       nzMode="multiple"></nz-select>
+
+          </div>
+
+          <div class="w-100 mt-4">
+
+            <span>Every<nz-input-number [(ngModel)]="recurringTask.taskMetadata.everyNMonths" [nzMin]="1"
+                                        class="mx-3"></nz-input-number>Months</span>
+
+          </div>
+
+        </ng-container>
+
+      </ng-container>
+
+    </div>
+
+    <div class="mt-4 d-flex w-100 justify-content-end">
+
+      <button nz-button (click)="save()" nzType="primary" [nzLoading]="loading"
+              [disabled]="loading">Save
+      </button>
+
+    </div>
+
+  </ng-container>
+
+</nz-drawer>
