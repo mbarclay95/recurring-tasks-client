@@ -43,15 +43,15 @@
 
       </div>
 
-    </div>
+      <div class="mt-4 d-flex w-100 justify-content-end">
 
-    <div class="mt-4 d-flex w-100 justify-content-end">
+        <button *ngIf="task.id === 0" nz-button (click)="create()" nzType="primary" [nzLoading]="loading"
+                [disabled]="loading">Save</button>
 
-      <button *ngIf="task.id === 0" nz-button (click)="create()" nzType="primary" [nzLoading]="loading"
-              [disabled]="loading">Save</button>
+        <button *ngIf="task.id !== 0" nz-button (click)="clear()" nzType="default" [nzLoading]="loading"
+                [disabled]="loading">Clear</button>
+      </div>
 
-      <button *ngIf="task.id !== 0" nz-button (click)="clear()" nzType="default" [nzLoading]="loading"
-              [disabled]="loading">Clear</button>
     </div>
 
   </ng-container>
