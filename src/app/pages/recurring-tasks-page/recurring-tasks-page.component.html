@@ -1,1 +1,8 @@
-<p>recurring-tasks-page works!</p>
+<div class="w-100" *ngIf="(recurringTasksQuery.recurringTasks$ | async) as recurringTasks">
+
+  <app-recurring-task-table [recurringTasks]="recurringTasks"
+                            (editRecurringTask)="openDrawer.next($event)"></app-recurring-task-table>
+
+</div>
+
+<app-create-edit-recurring-task [openDrawer]="openDrawer.asObservable()"></app-create-edit-recurring-task>

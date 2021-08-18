@@ -7,7 +7,7 @@ export interface RecurringTask {
   mode: Modes;
   description: string;
   priority: Priority;
-  taskMetadata: TaskMetadataDef
+  taskMetadata: TaskMetadataDef;
 
 }
 
@@ -23,10 +23,13 @@ export function createRecurringTask(params: Partial<RecurringTask>): RecurringTa
 }
 
 export interface TaskMetadataDef {
-  weekdays?: number[],
-  monthDays?: number[],
-  yearDays?: Date[],
-}
+  weekdays?: number[];
+  monthDays?: number[];
+  yearDays?: Date[];
+  everyNDays?: number;
+  everyNWeeks?: number;
+  everyNMonths?: number;
+ }
 
 export enum Modes {
   DAILY = 'daily',

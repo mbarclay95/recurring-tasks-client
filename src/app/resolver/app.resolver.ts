@@ -20,5 +20,6 @@ export class AppResolver implements Resolve<void> {
 
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<void> {
     await this.tasksService.getTasks();
+    await this.recurringTasksService.getRecurringTasks();
   }
 }

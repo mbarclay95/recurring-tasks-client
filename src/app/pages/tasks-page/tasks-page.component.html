@@ -1,11 +1,10 @@
-
-<div class="w-100" style="height: calc(100vh - 181px)" #target>
+<div class="w-100" style="height: calc(100vh - 181px)">
 
   <app-quick-add-task></app-quick-add-task>
 
   <app-task-list></app-task-list>
 
-  <nz-affix [nzTarget]="target" style="position: absolute; right: 24px; bottom: 88px">
+  <div style="position: absolute; right: 24px; bottom: 88px">
 
     <button nz-button nz-dropdown nzPlacement="topRight" nzShape="circle" nzSize="large" nzType="primary"
             [nzDropdownMenu]="menu">
@@ -26,7 +25,7 @@
 
     </nz-dropdown-menu>
 
-  </nz-affix>
+  </div>
 
 </div>
 

@@ -14,7 +14,7 @@ export class RecurringTasksService {
   ) {
   }
 
-  async create(recurringTask: RecurringTask) {
+  async create(recurringTask: RecurringTask): Promise<void> {
     await this.http.post(`${environment.apiUrl}/recurring-tasks`, recurringTask).pipe(
       map(r => createRecurringTask(r)),
       tap(r => this.recurringTasksStore.add(r))
@@ -28,4 +28,11 @@ export class RecurringTasksService {
     ).toPromise();
   }
 
+  async getRecurringTasks(): Promise<void> {
+    await this.http.get<RecurringTask[]>(`${environment.apiUrl}/recurring-tasks`).pipe(
+      map(recurringTasks => recurringTasks.map(r => createRecurringTask(r))),
+      tap(recurringTasks => this.recurringTasksStore.set(recurringTasks))
+    ).toPromise();
+
+  }
 }

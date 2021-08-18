@@ -10,6 +10,9 @@
 
   </div>
 
+  <fa-icon *ngIf="task.scheduledAt.getTime() < today.getTime() && task.scheduledAt.getDate() !== today.getDate()"
+           [icon]="late" class="me-2 text-warning"></fa-icon>
+
   {{task.title}}
 
 </div>

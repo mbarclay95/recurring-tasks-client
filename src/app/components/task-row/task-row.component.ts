@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Priority, Task} from 'src/app/interfaces/task.model';
-import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {faExclamationCircle, faStar} from '@fortawesome/free-solid-svg-icons';
 import {faStar as faStarOutline} from "@fortawesome/free-regular-svg-icons";
 import {TasksService} from "../../services/tasks/state/tasks.service";
 
@@ -15,7 +15,9 @@ export class TaskRowComponent implements OnInit {
 
   Priority = Priority;
   star = faStar;
+  late = faExclamationCircle;
   outlineStar = faStarOutline;
+  today = new Date();
 
   constructor(
     public tasksService: TasksService,
