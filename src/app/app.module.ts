@@ -35,6 +35,7 @@ import {CreateEditTaskComponent} from './components/create-edit-task/create-edit
 import {CreateEditRecurringTaskComponent} from './components/create-edit-recurring-task/create-edit-recurring-task.component';
 import { RecurringTaskTableComponent } from './components/recurring-task-table/recurring-task-table.component';
 import {NzTableModule} from 'ng-zorro-antd/table';
+import { FrequencyToStringPipe } from './pipes/frequency-to-string.pipe';
 
 registerLocaleData(en);
 
@@ -49,7 +50,8 @@ registerLocaleData(en);
     CreateEditTaskComponent,
     CreateEditRecurringTaskComponent,
     TaskRowComponent,
-    RecurringTaskTableComponent
+    RecurringTaskTableComponent,
+    FrequencyToStringPipe
   ],
   imports: [
     BrowserModule,

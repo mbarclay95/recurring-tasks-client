@@ -17,7 +17,7 @@
 
       <ul nz-menu nzSelectable>
 
-        <li nz-menu-item>New Task</li>
+        <li nz-menu-item (click)="createNewTask()">New Task</li>
 
         <li nz-menu-item (click)="createNewRecurringTask()">New Recurring Task</li>
 
@@ -29,6 +29,6 @@
 
 </div>
 
-<app-create-edit-task></app-create-edit-task>
+<app-create-edit-task [openDrawer]="openTaskDrawer.asObservable()"></app-create-edit-task>
 <app-create-edit-recurring-task [openDrawer]="openRecurringDrawer.asObservable()"></app-create-edit-recurring-task>
 

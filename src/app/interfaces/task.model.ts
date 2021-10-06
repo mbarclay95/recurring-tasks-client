@@ -16,12 +16,25 @@ export function createTask(params: Partial<Task>): Task {
     id: params.id ?? 0,
     completedAt: params.completedAt ? new Date(params.completedAt) : null,
     clearedAt: params.clearedAt ? new Date(params.clearedAt) : null,
-    scheduledAt: params.scheduledAt ? new Date(params.scheduledAt) : null,
+    scheduledAt: params.scheduledAt ? setDateToLocalTimezone(new Date(params.scheduledAt)) : null,
     title: params.title ?? null,
     description: params.description ?? null,
     priority: Number.isNaN(params.priority) ? null : Number(params.priority),
     recurringTaskId: Number.isNaN(params.recurringTaskId) ? null : Number(params.recurringTaskId),
   } as Task;
+}
+
+export function setDateToLocalTimezone(date: Date): Date {
+  const dateInTimeZone = new Date();
+  dateInTimeZone.setHours(0);
+  dateInTimeZone.setMinutes(0);
+  dateInTimeZone.setSeconds(0);
+  dateInTimeZone.setMilliseconds(0);
+  dateInTimeZone.setMonth(date.getUTCMonth());
+  dateInTimeZone.setDate(date.getUTCDate());
+  dateInTimeZone.setFullYear(date.getUTCFullYear());
+
+  return dateInTimeZone;
 }
 
 export enum Priority {

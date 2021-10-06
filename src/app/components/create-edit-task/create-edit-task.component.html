@@ -10,7 +10,7 @@
 
         <div>Title</div>
 
-        <input nz-input [ngModel]="task.title" (ngModelChange)="tasksService.update(task.id, {title: $event})"
+        <input nz-input [ngModel]="task.title" (ngModelChange)="updateTask({title: $event})"
                [ngModelOptions]="{updateOn: 'blur'}">
 
       </div>
@@ -20,7 +20,7 @@
         <div>Scheduled Date</div>
 
         <nz-date-picker [ngModel]="task.scheduledAt" [ngModelOptions]="{updateOn: 'blur'}"
-                        (ngModelChange)="tasksService.update(task.id, {scheduledAt: $event})"
+                        (ngModelChange)="updateTask({scheduledAt: $event})"
                         nzFormat="M/d/Y"></nz-date-picker>
 
       </div>
@@ -30,7 +30,7 @@
         <div>Priority</div>
 
         <nz-select [ngModel]="task.priority" class="w-100" [nzOptions]="PriorityOptions"
-                   (ngModelChange)="tasksService.update(task.id, {priority: $event})"></nz-select>
+                   (ngModelChange)="updateTask({priority: $event})"></nz-select>
 
       </div>
 
@@ -39,7 +39,7 @@
         <div>Description</div>
 
         <textarea nz-input [ngModel]="task.description" [ngModelOptions]="{updateOn: 'blur'}"
-                  (ngModelChange)="tasksService.update(task.id, {description: $event})"></textarea>
+                  (ngModelChange)="updateTask({description: $event})"></textarea>
 
       </div>
 

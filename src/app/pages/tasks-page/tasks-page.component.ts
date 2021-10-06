@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
-import {Subject} from "rxjs";
-import {createRecurringTask, RecurringTask} from "../../interfaces/recurring-task.model";
-import {Task} from "../../interfaces/task.model";
+import {Subject} from 'rxjs';
+import {createRecurringTask, RecurringTask} from '../../interfaces/recurring-task.model';
+import {createTask, Task} from '../../interfaces/task.model';
 
 @Component({
   selector: 'app-tasks-page',
@@ -19,7 +19,13 @@ export class TasksPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createNewRecurringTask() {
+  createNewTask(): void {
+    const task = createTask({});
+    task.scheduledAt = new Date();
+    this.openTaskDrawer.next(task);
+  }
+
+  createNewRecurringTask(): void {
     this.openRecurringDrawer.next(createRecurringTask({}));
   }
 

@@ -18,6 +18,7 @@ export class TasksQuery extends QueryEntity<TasksState> {
   inCompletedTasks$: Observable<Task[]> = this.tasks$.pipe(
     map(tasks => tasks.filter(task => !task.completedAt))
   );
+
   constructor(
     protected store: TasksStore
   ) {

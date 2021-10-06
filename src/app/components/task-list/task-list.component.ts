@@ -23,9 +23,4 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
-  test(completeTasks: Task[]) {
-   console.log(completeTasks);
-  }
 }

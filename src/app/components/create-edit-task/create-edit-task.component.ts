@@ -49,8 +49,20 @@ export class CreateEditTaskComponent implements OnInit, OnDestroy {
     });
   }
 
-  create(): void {
+  async create(): Promise<void> {
+    this.loading = true;
+    await this.tasksService.createNew(this.task);
+    this.loading = false;
+    this.isVisible = false;
+  }
 
+  updateTask(newState: Partial<Task>): void {
+    if (this.task.id === 0) {
+      this.task = {...this.task, ...newState};
+      return;
+    }
+
+    this.tasksService.update(this.task.id, newState);
   }
 
   async clear(): Promise<void> {
