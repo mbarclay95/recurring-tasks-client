@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://localhost:4000/api',
-  apiUrl: 'https://tasks-api.bigmike.dev/api',
+  apiUrl: 'http://localhost:4000/api',
+  // apiUrl: 'https://tasks-api.bigmike.dev/api',
 };
 
 /*

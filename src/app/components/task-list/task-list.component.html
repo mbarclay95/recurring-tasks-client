@@ -20,7 +20,7 @@
   </div>
 
   <div *ngIf="completeTasks.length > 0 && !showCompleteTasks" style="cursor: pointer" class="mt-3" (click)="showCompleteTasks = true">Show
-    Completed<fa-icon [icon]="down" class="ms-2"></fa-icon>
+    Completed ({{completeTasks.length}})<fa-icon [icon]="down" class="ms-2"></fa-icon>
   </div>
 
 </div>

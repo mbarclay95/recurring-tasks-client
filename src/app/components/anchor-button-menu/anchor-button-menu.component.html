@@ -1,0 +1,21 @@
+<button nz-button nz-dropdown nzPlacement="topRight" nzShape="circle" nzSize="large" nzType="primary"
+        [nzDropdownMenu]="menu">
+
+  <fa-icon [icon]="add"></fa-icon>
+
+</button>
+
+<nz-dropdown-menu #menu>
+
+  <ul nz-menu nzSelectable>
+
+    <li nz-menu-item (click)="createNewTask()">New Task</li>
+
+    <li nz-menu-item (click)="createNewRecurringTask()">New Recurring Task</li>
+
+  </ul>
+
+</nz-dropdown-menu>
+
+<app-create-edit-task [openDrawer]="openTaskDrawer.asObservable()"></app-create-edit-task>
+<app-create-edit-recurring-task [openDrawer]="openRecurringDrawer.asObservable()"></app-create-edit-recurring-task>
