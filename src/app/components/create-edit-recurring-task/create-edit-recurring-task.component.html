@@ -97,7 +97,12 @@
 
     <div class="mt-4 d-flex w-100 justify-content-end">
 
-      <button nz-button (click)="save()" nzType="primary" [nzLoading]="loading"
+      <button nz-button (nzOnConfirm)="delete()" nzType="default" [nzLoading]="deleting"
+              [disabled]="loading || deleting" nz-popconfirm nzPopconfirmTitle="Are you sure?">
+        Delete
+      </button>
+
+      <button nz-button (click)="save()" nzType="primary" [nzLoading]="loading" class="ms-2"
               [disabled]="loading">Save
       </button>
 

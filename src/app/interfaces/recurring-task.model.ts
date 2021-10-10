@@ -1,4 +1,4 @@
-import {Priority} from './task.model';
+import {Priority, Task} from './task.model';
 import {NzSelectOptionInterface} from 'ng-zorro-antd/select';
 
 export interface RecurringTask {
@@ -8,7 +8,13 @@ export interface RecurringTask {
   description: string;
   priority: Priority;
   taskMetadata: TaskMetadataDef;
+  taskHistory: TaskHistory;
+}
 
+export interface TaskHistory {
+  open: boolean;
+  loaded: boolean;
+  tasks: Task[];
 }
 
 export function createRecurringTask(params: Partial<RecurringTask>): RecurringTask {
@@ -18,8 +24,24 @@ export function createRecurringTask(params: Partial<RecurringTask>): RecurringTa
     mode: params.mode ?? null,
     description: params.description ?? null,
     priority: Number.isNaN(params.priority) ? null : Number(params.priority),
-    taskMetadata: {...params.taskMetadata ?? {}}
+    taskMetadata: {...params.taskMetadata ?? {}},
+    taskHistory: {
+      open: false,
+      loaded: false,
+      tasks: []
+    }
   } as RecurringTask;
+}
+
+export function recurringTaskToSave(recurringTask: RecurringTask): Omit<RecurringTask, 'taskHistory'> {
+  return {
+    id: recurringTask.id,
+    title: recurringTask.title,
+    mode: recurringTask.mode,
+    description: recurringTask.description,
+    priority: recurringTask.priority,
+    taskMetadata: recurringTask.taskMetadata,
+  };
 }
 
 export function frequencyToString(recurringTask: RecurringTask): string {

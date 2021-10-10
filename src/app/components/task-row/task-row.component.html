@@ -1,18 +1,23 @@
-<div  class="task-box mt-2" (click)="editTask.emit(task)">
+<div class="task-box mt-2" (click)="editTask.emit(task)">
 
-  <label nz-checkbox [ngModel]="!!task.completedAt" (ngModelChange)="completedTask(task.id, $event)"></label>
+  <label nz-checkbox [ngModel]="!!task.completedAt" (ngModelChange)="completedTask(task.id, $event)"
+         class="ms-2 me-4 checkbox-size"></label>
 
-  <div class="me-2" [ngSwitch]="task.priority">
-
-    <fa-icon [icon]="outlineStar" *ngSwitchCase="Priority.Low"></fa-icon>
-    <fa-icon [icon]="star" class="text-warning" *ngSwitchCase="Priority.Normal"></fa-icon>
-    <fa-icon [icon]="star" class="text-danger" *ngSwitchCase="Priority.High"></fa-icon>
-
-  </div>
+<!--  <div class="me-2" [ngSwitch]="task.priority">-->
+<!--    <fa-icon [icon]="outlineStar" *ngSwitchCase="Priority.Low"></fa-icon>-->
+<!--    <fa-icon [icon]="star" class="text-warning" *ngSwitchCase="Priority.Normal"></fa-icon>-->
+<!--    <fa-icon [icon]="star" class="text-danger" *ngSwitchCase="Priority.High"></fa-icon>-->
+<!--  </div>-->
 
   <fa-icon *ngIf="task.scheduledAt.getTime() < today.getTime() && task.scheduledAt.getDate() !== today.getDate()"
            [icon]="late" class="me-2 text-warning"></fa-icon>
 
-  {{task.title}}
+  <div class="title-and-description">
+
+    <div class="title">{{task.title}}</div>
+
+    <div class="description" *ngIf="!!task.description">{{task.description}}</div>
+
+  </div>
 
 </div>

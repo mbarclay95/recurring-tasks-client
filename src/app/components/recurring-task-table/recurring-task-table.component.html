@@ -16,25 +16,34 @@
 
   <tbody>
 
-  <tr *ngFor="let recurringTask of recurringTaskTable.data">
+  <ng-container *ngFor="let recurringTask of recurringTaskTable.data">
 
-    <td>{{recurringTask.title}}</td>
+    <tr style="cursor: pointer" (click)="recurringTasksService.toggleOpenHistory(recurringTask.id, recurringTask.taskHistory)">
 
-    <td>{{recurringTask.mode}}</td>
+      <td>{{recurringTask.title}}</td>
 
-    <td>Every {{recurringTask | frequencyToString}} </td>
+      <td>{{recurringTask.mode}}</td>
 
-    <td>
+      <td>Every {{recurringTask | frequencyToString}} </td>
 
-      <button nz-button (click)="editRecurringTask.emit(recurringTask)" nzType="primary">
-        <fa-icon [icon]="edit"></fa-icon>
-      </button>
+      <td>
 
-    </td>
+        <button nz-button (click)="editRecurringTask.emit(recurringTask)" nzType="primary">
+          <fa-icon [icon]="edit"></fa-icon>
+        </button>
 
-  </tr>
+      </td>
+
+    </tr>
+
+    <tr *ngIf="recurringTask.taskHistory.open">
+
+      <app-recurring-task-history-row [recurringTask]="recurringTask"></app-recurring-task-history-row>
+
+    </tr>
+
+  </ng-container>
 
   </tbody>
-
 
 </nz-table>

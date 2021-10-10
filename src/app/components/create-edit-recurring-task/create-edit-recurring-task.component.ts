@@ -1,6 +1,14 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Observable, of, Subject} from 'rxjs';
-import {createRecurringTask, ModeOptions, Modes, MonthDayOptions, RecurringTask, WeekdayOptions} from '../../interfaces/recurring-task.model';
+import {
+  createRecurringTask,
+  ModeOptions,
+  Modes,
+  MonthDayOptions,
+  RecurringTask,
+  recurringTaskToSave,
+  WeekdayOptions
+} from '../../interfaces/recurring-task.model';
 import {RecurringTasksService} from '../../services/recurring-tasks/state/recurring-tasks.service';
 import {takeUntil} from 'rxjs/operators';
 import { PriorityOptions } from 'src/app/interfaces/task.model';
@@ -22,6 +30,7 @@ export class CreateEditRecurringTaskComponent implements OnInit, OnDestroy {
   MonthDayOptions = MonthDayOptions;
   Modes = Modes;
   loading = false;
+  deleting = false;
   drawerWidth = '';
 
   private subscriptionDestroyer: Subject<void> = new Subject<void>();
@@ -71,9 +80,16 @@ export class CreateEditRecurringTaskComponent implements OnInit, OnDestroy {
   async save(): Promise<void> {
     this.loading = true;
     this.recurringTask.id === 0 ?
-      await this.recurringTasksService.create(this.recurringTask):
-      await this.recurringTasksService.update(this.recurringTask.id, this.recurringTask);
+      await this.recurringTasksService.create(recurringTaskToSave(this.recurringTask)) :
+      await this.recurringTasksService.update(this.recurringTask.id, recurringTaskToSave(this.recurringTask));
     this.loading = false;
+    this.isVisible = false;
+  }
+
+  async delete() {
+    this.deleting = true;
+    await this.recurringTasksService.delete(this.recurringTask.id);
+    this.deleting = false;
     this.isVisible = false;
   }
 }

@@ -37,6 +37,8 @@ import { RecurringTaskTableComponent } from './components/recurring-task-table/r
 import {NzTableModule} from 'ng-zorro-antd/table';
 import { FrequencyToStringPipe } from './pipes/frequency-to-string.pipe';
 import { AnchorButtonMenuComponent } from './components/anchor-button-menu/anchor-button-menu.component';
+import { RecurringTaskHistoryRowComponent } from './components/recurring-task-history-row/recurring-task-history-row.component';
+import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
 
 registerLocaleData(en);
 
@@ -53,31 +55,33 @@ registerLocaleData(en);
     TaskRowComponent,
     RecurringTaskTableComponent,
     FrequencyToStringPipe,
-    AnchorButtonMenuComponent
+    AnchorButtonMenuComponent,
+    RecurringTaskHistoryRowComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot(),
-    FontAwesomeModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzInputModule,
-    NzAffixModule,
-    NzWaveModule,
-    NzButtonModule,
-    NzPopoverModule,
-    NzDropDownModule,
-    NzCheckboxModule,
-    NzDrawerModule,
-    NzSelectModule,
-    NzDatePickerModule,
-    NzInputNumberModule,
-    NzTableModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        environment.production ? [] : AkitaNgDevtools.forRoot(),
+        FontAwesomeModule,
+        NzLayoutModule,
+        NzMenuModule,
+        NzInputModule,
+        NzAffixModule,
+        NzWaveModule,
+        NzButtonModule,
+        NzPopoverModule,
+        NzDropDownModule,
+        NzCheckboxModule,
+        NzDrawerModule,
+        NzSelectModule,
+        NzDatePickerModule,
+        NzInputNumberModule,
+        NzTableModule,
+        NzPopconfirmModule,
+    ],
   providers: [{provide: NZ_I18N, useValue: en_US}],
   bootstrap: [AppComponent]
 })
